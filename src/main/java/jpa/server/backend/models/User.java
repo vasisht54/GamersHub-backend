@@ -8,8 +8,8 @@ import java.util.List;
 @Entity
 public class User extends Person {
 
-    @ManyToMany(mappedBy = "usersList")
-    private List<Group> groupsList;
+    @ManyToMany
+    private List<GameGroup> groupsList;
 
     public User() {
     }
@@ -18,11 +18,11 @@ public class User extends Person {
         super(username, password, firstName, lastName, dob);
     }
 
-    public List<Group> getGroupsList() {
+    public List<GameGroup> getGroupsList() {
         return groupsList;
     }
 
-    public void setGroupsList(List<Group> groupsList) {
+    public void setGroupsList(List<GameGroup> groupsList) {
         this.groupsList = groupsList;
     }
 }

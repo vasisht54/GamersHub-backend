@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-public class Group {
+public class GameGroup {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,8 +16,10 @@ public class Group {
     @ManyToOne
     @JsonIgnore
     private GroupAdmin groupAdmin;
+    @ManyToOne
+    private Game game;
 
-    public Group() {
+    public GameGroup() {
     }
 
     public int getId() {
@@ -34,5 +36,21 @@ public class Group {
 
     public void setUsersList(List<User> usersList) {
         this.usersList = usersList;
+    }
+
+    public GroupAdmin getGroupAdmin() {
+        return groupAdmin;
+    }
+
+    public void setGroupAdmin(GroupAdmin groupAdmin) {
+        this.groupAdmin = groupAdmin;
+    }
+
+    public Game getGame() {
+        return game;
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
     }
 }
