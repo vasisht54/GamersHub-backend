@@ -52,4 +52,7 @@ public class UserController {
   public List<GameGroup> getUserGroups(@RequestBody Integer userId) {
     return userService.getUserGroups(userId);
   }
+
+  @GetMapping("/api/users/{username}")
+  public User findUserByUsername(@PathVariable String username) {return userService.findUserByUsername(username); }
 }

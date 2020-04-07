@@ -21,4 +21,6 @@ public interface GroupAdminDao {
   void deleteGroupAdmin(Integer groupAdminId);
 
   GroupAdmin updateGroupAdmin(GroupAdmin groupAdmin);
+
+  GroupAdmin findGroupAdminByUsername(String username);
 }

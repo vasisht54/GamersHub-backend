@@ -49,8 +49,11 @@ public class GroupAdminController {
   }
 
   @GetMapping("/api/groupAdmin/{groupAdminId}/groupAdminGroups")
-  public List<GameGroup> getGroupAdminGroups(@RequestBody Integer groupAdminId) {
+  public List<GameGroup> getGroupAdminGroups(@PathVariable Integer groupAdminId) {
     return groupAdminService.getGroupAdminGroups(groupAdminId);
   }
+
+  @GetMapping("/api/groupAdmins/{username}")
+  public GroupAdmin findGroupAdminByUsername(@PathVariable String username) {return groupAdminService.findGroupAdminByUsername(username); }
   
 }

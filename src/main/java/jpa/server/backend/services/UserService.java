@@ -53,4 +53,9 @@ public class UserService implements UserDao {
   public User updateUser(User user) {
     return userRepository.save(user);
   }
+
+  @Override
+  public User findUserByUsername(String username) {
+    return userRepository.findUserByUsername(username);
+  }
 }

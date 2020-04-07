@@ -52,4 +52,9 @@ public class GroupAdminService implements GroupAdminDao {
   public GroupAdmin updateGroupAdmin(GroupAdmin groupAdmin) {
     return groupAdminRepository.save(groupAdmin);
   }
+
+  @Override
+  public GroupAdmin findGroupAdminByUsername(String username) {
+    return groupAdminRepository.findGroupAdminByUsername(username);
+  }
 }
