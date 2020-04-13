@@ -25,12 +25,12 @@ public class GameGroupController {
   @Autowired
   private GameGroupServices gameGroupServices;
 
-  @PostMapping("/api/gameGroup")
+  @PostMapping("/api/gameGroups")
   public GameGroup createGameGroup(@RequestBody GameGroup gameGroup) {
     return gameGroupServices.createGameGroup(gameGroup);
   }
 
-  @GetMapping("api/gameGroup/{gameGroupId}")
+  @GetMapping("api/gameGroups/{gameGroupId}")
   public GameGroup findGameGroupById(@PathVariable int gameGroupId) {
     return gameGroupServices.findGameGroupById(gameGroupId);
   }
@@ -40,15 +40,15 @@ public class GameGroupController {
     return gameGroupServices.findAllGameGroup();
   }
 
-  @DeleteMapping("api/gameGroup/{gameGroupId}")
+  @DeleteMapping("api/gameGroups/{gameGroupId}")
   public void deleteGameGroup(@PathVariable int gameGroupId) {
     this.gameGroupServices.deleteGameGroup(gameGroupId);
   }
 
 
-  @PutMapping("api/gameGroup")
+  @PutMapping("api/gameGroups")
   public GameGroup updateGameGroup(@RequestBody GameGroup gameGroup) {
-    return this.updateGameGroup(gameGroup);
+    return gameGroupServices.updateGameGroup(gameGroup);
   }
 
 //  @GetMapping("api/gameGroup/{gameName}")

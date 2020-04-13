@@ -2,7 +2,6 @@ package jpa.server.backend.daos;
 
 import java.util.List;
 
-import javafx.scene.Group;
 import jpa.server.backend.models.Admin;
 import jpa.server.backend.models.GroupAdmin;
 import jpa.server.backend.models.User;

@@ -23,7 +23,7 @@ public class UserController {
   @Autowired
   private UserService userService;
 
-  @DeleteMapping("/api/user/{userId}")
+  @DeleteMapping("/api/users/{userId}")
   public void deleteUser(@PathVariable int userId) {
     this.userService.deleteUser(userId);
   }
@@ -33,22 +33,22 @@ public class UserController {
     return userService.findAllUsers();
   }
 
-  @GetMapping("/api/user/{userId}")
+  @GetMapping("/api/users/{userId}")
   public User findUserById(@PathVariable int userId) {
     return userService.findUserById(userId);
   }
 
-  @PostMapping("/api/user")
+  @PostMapping("/api/users")
   public User createUser(@RequestBody User user) {
     return userService.createUser(user);
   }
 
-  @PutMapping("api/user")
+  @PutMapping("api/users")
   public User updateUser(@RequestBody User user) {
     return userService.updateUser(user);
   }
 
-  @GetMapping("/api/user/{userId}/userGroups")
+  @GetMapping("/api/users/{userId}/userGroups")
   public List<GameGroup> getUserGroups(@RequestBody Integer userId) {
     return userService.getUserGroups(userId);
   }

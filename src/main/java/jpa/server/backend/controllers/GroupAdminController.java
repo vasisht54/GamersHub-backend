@@ -23,7 +23,7 @@ public class GroupAdminController {
   @Autowired
   private GroupAdminService groupAdminService;
 
-  @DeleteMapping("/api/groupAdmin/{groupAdminId}")
+  @DeleteMapping("/api/groupAdmins/{groupAdminId}")
   public void deleteGroupAdmin(@PathVariable int groupAdminId) {
     this.groupAdminService.deleteGroupAdmin(groupAdminId);
   }
@@ -33,22 +33,22 @@ public class GroupAdminController {
     return groupAdminService.findAllGroupAdmins();
   }
 
-  @GetMapping("/api/groupAdmin/{groupAdminId}")
+  @GetMapping("/api/groupAdmins/{groupAdminId}")
   public GroupAdmin findGroupAdminById(@PathVariable int groupAdminId) {
     return groupAdminService.findGroupAdminById(groupAdminId);
   }
 
-  @PostMapping("/api/groupAdmin")
+  @PostMapping("/api/groupAdmins")
   public GroupAdmin createGroupAdmin(@RequestBody GroupAdmin groupAdmin) {
     return groupAdminService.createGroupAdmin(groupAdmin);
   }
 
-  @PutMapping("api/groupAdmin")
+  @PutMapping("api/groupAdmins")
   public GroupAdmin updateGroupAdmin(@RequestBody GroupAdmin groupAdmin) {
     return groupAdminService.updateGroupAdmin(groupAdmin);
   }
 
-  @GetMapping("/api/groupAdmin/{groupAdminId}/groupAdminGroups")
+  @GetMapping("/api/groupAdmins/{groupAdminId}/groupAdminGroups")
   public List<GameGroup> getGroupAdminGroups(@PathVariable Integer groupAdminId) {
     return groupAdminService.getGroupAdminGroups(groupAdminId);
   }
