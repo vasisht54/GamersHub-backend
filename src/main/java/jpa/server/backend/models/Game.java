@@ -13,7 +13,6 @@ public class Game {
     private int id;
     private String name;
     @OneToMany(mappedBy = "game")
-    @JsonIgnore
     private List<GameGroup> groupsList;
     private String description;
     private Date publishedDate;

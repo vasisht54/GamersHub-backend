@@ -22,7 +22,7 @@ public class GameController {
   @Autowired
   private GameService gameService;
 
-  @DeleteMapping("/api/game/{gameId}")
+  @DeleteMapping("/api/games/{gameId}")
   public void deleteGame(@PathVariable int gameId) {
     this.gameService.deleteGame(gameId);
   }
@@ -32,17 +32,17 @@ public class GameController {
     return gameService.findAllGames();
   }
 
-  @GetMapping("/api/game/{gameId}")
+  @GetMapping("/api/games/{gameId}")
   public Game findGameById(@PathVariable int gameId) {
     return gameService.findGameById(gameId);
   }
 
-  @PostMapping("/api/game")
+  @PostMapping("/api/games")
   public Game createGame(@RequestBody Game game) {
     return gameService.createGame(game);
   }
 
-  @PutMapping("api/game")
+  @PutMapping("api/games")
   public Game updateGame(@RequestBody Game game) {
     return gameService.updateGame(game);
   }

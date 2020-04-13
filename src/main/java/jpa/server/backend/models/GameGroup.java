@@ -17,6 +17,7 @@ public class GameGroup {
     @JsonIgnore
     private GroupAdmin groupAdmin;
     @ManyToOne
+    @JsonIgnore
     private Game game;
 
     public GameGroup() {

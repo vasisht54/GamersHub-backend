@@ -23,7 +23,7 @@ public class AdminController {
   @Autowired
   private AdminService adminService;
 
-  @DeleteMapping("/api/admin/{adminId}")
+  @DeleteMapping("/api/admins/{adminId}")
   public void deleteAdmin(@PathVariable int adminId) {
     this.adminService.deleteAdmin(adminId);
   }
@@ -33,17 +33,17 @@ public class AdminController {
     return adminService.findAllAdmins();
   }
 
-  @GetMapping("/api/admin/{adminId}")
+  @GetMapping("/api/admins/{adminId}")
   public Admin findAdminById(@PathVariable int adminId) {
     return adminService.findAdminById(adminId);
   }
 
-  @PostMapping("/api/admin")
+  @PostMapping("/api/admins")
   public Admin createAdmin(@RequestBody Admin admin) {
     return adminService.createAdmin(admin);
   }
 
-  @PutMapping("api/admin")
+  @PutMapping("api/admins")
   public Admin updateAdmin(@RequestBody Admin admin) {
     return adminService.updateAdmin(admin);
   }
