@@ -50,8 +50,16 @@ public class GameService implements GameDao {
   }
 
   @Override
-  public Game updateGame(Game game) {
-    return gameRepository.save(game);
+  public Game updateGame(Game game, Integer gameId) {
+    Game gameToUpdate = findGameById(gameId);
+    gameToUpdate.setCreator(game.getCreator());
+    gameToUpdate.setDescription(game.getDescription());
+    gameToUpdate.setGroupsList(game.getGroupsList());
+    gameToUpdate.setId(game.getId());
+    gameToUpdate.setImageUrl(game.getImageUrl());
+    gameToUpdate.setName(game.getName());
+    gameToUpdate.setPublishedDate(game.getPublishedDate());
+    return gameRepository.save(gameToUpdate);
   }
 
   @Override

@@ -43,9 +43,9 @@ public class UserController {
     return userService.createUser(user);
   }
 
-  @PutMapping("api/users")
-  public User updateUser(@RequestBody User user) {
-    return userService.updateUser(user);
+  @PutMapping("api/users/{userId}")
+  public User updateUser(@RequestBody User user, @PathVariable Integer userId) {
+    return userService.updateUser(user, userId);
   }
 
   @GetMapping("/api/users/{userId}/userGroups")

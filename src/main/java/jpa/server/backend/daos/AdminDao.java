@@ -24,7 +24,7 @@ public interface AdminDao {
 //  void deleteUser(Integer userId);
 //  void deleteGroupAdmin(Integer groupAdminId);
 
-  Admin updateAdmin(Admin admin);
+  Admin updateAdmin(Admin admin, Integer adminId);
 //  User updateUser(User userId);
 //  GroupAdmin updateGroupAdmin(GroupAdmin groupAdmin);
 

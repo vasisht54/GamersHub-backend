@@ -46,9 +46,9 @@ public class GameGroupController {
   }
 
 
-  @PutMapping("api/gameGroups")
-  public GameGroup updateGameGroup(@RequestBody GameGroup gameGroup) {
-    return gameGroupServices.updateGameGroup(gameGroup);
+  @PutMapping("api/gameGroups/{gameGroupId}")
+  public GameGroup updateGameGroup(@RequestBody GameGroup gameGroup, @PathVariable Integer gameGroupId) {
+    return gameGroupServices.updateGameGroup(gameGroup, gameGroupId);
   }
 
 //  @GetMapping("api/gameGroup/{gameName}")

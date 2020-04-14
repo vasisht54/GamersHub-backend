@@ -42,9 +42,9 @@ public class GameController {
     return gameService.createGame(game);
   }
 
-  @PutMapping("api/games")
-  public Game updateGame(@RequestBody Game game) {
-    return gameService.updateGame(game);
+  @PutMapping("api/games/{gameId}")
+  public Game updateGame(@RequestBody Game game, @PathVariable Integer gameId) {
+    return gameService.updateGame(game, gameId);
   }
 
 
