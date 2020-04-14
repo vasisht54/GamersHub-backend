@@ -49,7 +49,14 @@ public class GroupAdminService implements GroupAdminDao {
   }
 
   @Override
-  public GroupAdmin updateGroupAdmin(GroupAdmin groupAdmin) {
+  public GroupAdmin updateGroupAdmin(GroupAdmin groupAdmin, Integer groupAdminId) {
+    GroupAdmin groupAdminToUpdate = findGroupAdminById(groupAdminId);
+    groupAdminToUpdate.setId(groupAdmin.getId());
+    groupAdminToUpdate.setGroupsList(groupAdmin.getGroupsList());
+    groupAdminToUpdate.setPassword(groupAdmin.getPassword());
+    groupAdminToUpdate.setDob(groupAdmin.getDob());
+    groupAdminToUpdate.setFirstName(groupAdmin.getFirstName());
+    groupAdminToUpdate.setLastName(groupAdmin.getLastName());
     return groupAdminRepository.save(groupAdmin);
   }
 

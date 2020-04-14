@@ -47,8 +47,13 @@ public class GameGroupServices implements GameGroupDao {
   }
 
   @Override
-  public GameGroup updateGameGroup(GameGroup gameGroup) {
-    return gameGroupRepository.save(gameGroup);
+  public GameGroup updateGameGroup(GameGroup gameGroup, Integer gameId) {
+    GameGroup gameGroupToUpdate = findGameGroupById(gameId);
+    gameGroupToUpdate.setGame(gameGroup.getGame());
+    gameGroupToUpdate.setGroupAdmin(gameGroup.getGroupAdmin());
+    gameGroupToUpdate.setId(gameGroup.getId());
+    gameGroupToUpdate.setUsersList(gameGroup.getUsersList());
+    return gameGroupRepository.save(gameGroupToUpdate);
   }
 
 //  @Override

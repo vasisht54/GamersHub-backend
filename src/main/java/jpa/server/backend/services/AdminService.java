@@ -43,7 +43,15 @@ public class AdminService implements AdminDao {
   }
 
   @Override
-  public Admin updateAdmin(Admin admin) {
+  public Admin updateAdmin(Admin admin, Integer adminId) {
+    Admin adminToUpdate = findAdminById(adminId);
+    adminToUpdate.setAdminKey(admin.getAdminKey());
+    adminToUpdate.setPassword(admin.getPassword());
+    adminToUpdate.setDob(admin.getDob());
+    adminToUpdate.setFirstName(admin.getFirstName());
+    adminToUpdate.setLastName(admin.getLastName());
+    adminToUpdate.setUsername(admin.getUsername());
+    adminToUpdate.setId(admin.getId());
     return adminRepository.save(admin);
   }
 

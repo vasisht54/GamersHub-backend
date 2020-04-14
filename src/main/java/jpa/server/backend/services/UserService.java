@@ -50,8 +50,16 @@ public class UserService implements UserDao {
   }
 
   @Override
-  public User updateUser(User user) {
-    return userRepository.save(user);
+  public User updateUser(User user, Integer userId) {
+    User userToUpdate = findUserById(userId);
+    userToUpdate.setId(user.getId());
+    userToUpdate.setGroupsList(user.getGroupsList());
+    userToUpdate.setPassword(user.getPassword());
+    userToUpdate.setDob(user.getDob());
+    userToUpdate.setFirstName(user.getFirstName());
+    userToUpdate.setLastName(user.getLastName());
+    userToUpdate.setUsername(user.getUsername());
+    return userRepository.save(userToUpdate);
   }
 
   @Override

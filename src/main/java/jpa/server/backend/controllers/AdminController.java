@@ -43,9 +43,9 @@ public class AdminController {
     return adminService.createAdmin(admin);
   }
 
-  @PutMapping("api/admins")
-  public Admin updateAdmin(@RequestBody Admin admin) {
-    return adminService.updateAdmin(admin);
+  @PutMapping("api/admins/{adminId}")
+  public Admin updateAdmin(@RequestBody Admin admin, @PathVariable Integer adminId) {
+    return adminService.updateAdmin(admin, adminId);
   }
 
 

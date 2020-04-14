@@ -43,9 +43,9 @@ public class GroupAdminController {
     return groupAdminService.createGroupAdmin(groupAdmin);
   }
 
-  @PutMapping("api/groupAdmins")
-  public GroupAdmin updateGroupAdmin(@RequestBody GroupAdmin groupAdmin) {
-    return groupAdminService.updateGroupAdmin(groupAdmin);
+  @PutMapping("api/groupAdmins/{groupAdminId}")
+  public GroupAdmin updateGroupAdmin(@RequestBody GroupAdmin groupAdmin, @PathVariable Integer groupAdminId) {
+    return groupAdminService.updateGroupAdmin(groupAdmin, groupAdminId);
   }
 
   @GetMapping("/api/groupAdmins/{groupAdminId}/groupAdminGroups")

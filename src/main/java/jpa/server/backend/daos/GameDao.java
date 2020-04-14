@@ -18,7 +18,7 @@ public interface GameDao {
 
   void deleteGame(Integer gameId);
 
-  Game updateGame(Game game);
+  Game updateGame(Game game, Integer gameId);
 
   Game findGameByName(String name);
 }

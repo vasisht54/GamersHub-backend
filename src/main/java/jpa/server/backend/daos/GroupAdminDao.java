@@ -20,7 +20,7 @@ public interface GroupAdminDao {
 
   void deleteGroupAdmin(Integer groupAdminId);
 
-  GroupAdmin updateGroupAdmin(GroupAdmin groupAdmin);
+  GroupAdmin updateGroupAdmin(GroupAdmin groupAdmin, Integer groupAdminId);
 
   GroupAdmin findGroupAdminByUsername(String username);
 }
