@@ -12,8 +12,11 @@ public interface UserDao {
   //create user
   User createUser(User user);
 
-  //Get list of game groups for user
-  List<GameGroup> getUserGroups(Integer userId);
+  //Get a list of game groups where user is a member of
+  List<GameGroup> getUserMembershipGroups(Integer userId);
+
+  //Get a list of game groups where user is the admin of
+  List<GameGroup> getUserAdminGroups(Integer userId);
 
 
   //find user by id

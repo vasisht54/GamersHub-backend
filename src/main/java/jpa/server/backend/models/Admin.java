@@ -7,9 +7,6 @@ import java.util.Date;
 public class Admin extends Person {
     private String adminKey;
 
-    public Admin(String username, String password, String firstName, String lastName, Date dob) {
-        super(username, password, firstName, lastName, dob);
-    }
 
     public Admin() {
     }

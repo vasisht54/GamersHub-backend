@@ -11,14 +11,18 @@ public class GameGroup {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @ManyToMany(mappedBy = "groupsList")
+
+    @ManyToMany(mappedBy = "membershipGroups", fetch = FetchType.LAZY)
     private List<User> usersList;
+
     @ManyToOne
     @JsonIgnore
-    private GroupAdmin groupAdmin;
+    private User groupAdmin;
+
     @ManyToOne
     @JsonIgnore
     private Game game;
+
 
     public GameGroup() {
     }
@@ -39,11 +43,11 @@ public class GameGroup {
         this.usersList = usersList;
     }
 
-    public GroupAdmin getGroupAdmin() {
+    public User getGroupAdmin() {
         return groupAdmin;
     }
 
-    public void setGroupAdmin(GroupAdmin groupAdmin) {
+    public void setGroupAdmin(User groupAdmin) {
         this.groupAdmin = groupAdmin;
     }
 

@@ -23,11 +23,6 @@ public class GameService implements GameDao {
   }
 
   @Override
-  public List<GameGroup> getGameGroups(Integer userId) {
-    return gameRepository.findById(userId).get().getGroupsList();
-  }
-
-  @Override
   public Game findGameById(Integer gameId) {
     return gameRepository.findById(gameId).get();
   }

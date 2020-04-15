@@ -48,9 +48,14 @@ public class UserController {
     return userService.updateUser(user, userId);
   }
 
-  @GetMapping("/api/users/{userId}/userGroups")
-  public List<GameGroup> getUserGroups(@RequestBody Integer userId) {
-    return userService.getUserGroups(userId);
+  @GetMapping("/api/users/{userId}/userMembershipGroups")
+  public List<GameGroup> getUserMembershipGroups(@PathVariable("userId") Integer userId) {
+    return userService.getUserMembershipGroups(userId);
+  }
+
+  @GetMapping("/api/users/{userId}/userAdminGroups")
+  public List<GameGroup> getUserAdminGroups(@PathVariable("userId") Integer userId) {
+    return userService.getUserAdminGroups(userId);
   }
 
   @GetMapping("/api/users/{username}")

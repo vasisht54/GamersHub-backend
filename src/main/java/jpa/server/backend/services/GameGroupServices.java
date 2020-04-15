@@ -1,5 +1,7 @@
 package jpa.server.backend.services;
 
+import jpa.server.backend.models.Game;
+import jpa.server.backend.repositories.GameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -7,9 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jpa.server.backend.daos.GameGroupDao;
-import jpa.server.backend.models.Game;
 import jpa.server.backend.models.GameGroup;
-import jpa.server.backend.models.GroupAdmin;
 import jpa.server.backend.models.User;
 import jpa.server.backend.repositories.GameGroupRepository;
 
@@ -18,6 +18,12 @@ public class GameGroupServices implements GameGroupDao {
 
   @Autowired
   GameGroupRepository gameGroupRepository;
+
+  @Autowired
+  GameService gameService;
+
+  @Autowired
+  UserService userService;
 
   @Override
   public GameGroup createGameGroup(GameGroup gameGroup) {
@@ -56,18 +62,40 @@ public class GameGroupServices implements GameGroupDao {
     return gameGroupRepository.save(gameGroupToUpdate);
   }
 
-//  @Override
-//  public List<GameGroup> findGameGroupByGameName(String gameName) {
-//    return gameGroupRepository.findGameGroupByGameName(gameName);
-//  }
-
   @Override
-  public GroupAdmin getGroupAdmin(GameGroup gameGroup) {
-    return gameGroup.getGroupAdmin();
+  public List<GameGroup> findGameGroupsByGameName(String gameName){
+    Game game = gameService.findGameByName(gameName);
+    return game.getGroupsList();
   }
 
   @Override
-  public List<User> getUsersInGroup(GameGroup gameGroup) {
+  public User getGroupAdmin(Integer gameGroupId) {
+    return findGameGroupById(gameGroupId).getGroupAdmin();
+  }
+
+  @Override
+  public List<User> findUsersInGroup(Integer gameGroupId) {
+    GameGroup gameGroup = findGameGroupById(gameGroupId);
     return gameGroup.getUsersList();
   }
+
+  /*@Override
+  public GameGroup addUserToGameGroup(Integer userId, Integer gameGroupId) {
+    GameGroup group = findGameGroupById(gameGroupId);
+    List<User> users = group.getUsersList();
+    User user = userService.findUserById(userId);
+    users.add(user);
+    group.setUsersList(users);
+    userService.addUserToGroup(group.getId(), user.getId());
+    return group;
+  }*/
+
+  @Override
+  public int deleteUserFromGroup(Integer userId, Integer gameGroupId) {
+    GameGroup group = findGameGroupById(gameGroupId);
+    List<User> users = group.getUsersList();
+    User user = userService.findUserById(userId);
+    return users.remove(user) ? 1 : 0;
+  }
+
 }
