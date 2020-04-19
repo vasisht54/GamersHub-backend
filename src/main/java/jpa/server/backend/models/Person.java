@@ -17,13 +17,6 @@ public class Person {
     private String firstName;
     private String lastName;
 
-    public Person(String username, String password, String firstName, String lastName, Date dob) {
-        this.username = username;
-        this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.dob = dob;
-    }
 
     public Person() {
     }
@@ -74,5 +67,17 @@ public class Person {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "id=" + id +
+                ", dob=" + dob +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
     }
 }

@@ -9,9 +9,6 @@ public interface GameDao {
 
   Game createGame(Game game);
 
-  List<GameGroup> getGameGroups(Integer userId);
-
-
   Game findGameById(Integer gameId);
 
   List<Game> findAllGames();

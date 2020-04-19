@@ -2,9 +2,7 @@ package jpa.server.backend.daos;
 
 import java.util.List;
 
-import jpa.server.backend.models.Game;
 import jpa.server.backend.models.GameGroup;
-import jpa.server.backend.models.GroupAdmin;
 import jpa.server.backend.models.User;
 
 public interface GameGroupDao {
@@ -12,15 +10,20 @@ public interface GameGroupDao {
 
   GameGroup findGameGroupById(Integer gameGroupId);
 
-  List<GameGroup> findAllGameGroup();
+  List<GameGroup> findAllGameGroups();
 
   void deleteGameGroup(Integer gameGroupId);
 
   GameGroup updateGameGroup(GameGroup gameGroup, Integer gameId);
 
-//  List<GameGroup> findGameGroupByGameName(String gameName);
+  List<GameGroup> findGameGroupsByGameName(String gameName);
 
-  GroupAdmin getGroupAdmin(GameGroup gameGroup);
+  User getGroupAdmin(Integer gameGroupId);
 
-  List<User> getUsersInGroup(GameGroup gameGroup);
+  List<User> findUsersInGroup(Integer gameGroupId);
+
+  GameGroup addUserToGameGroup(Integer userId, Integer gameGroupId);
+
+  int deleteUserFromGroup(Integer userId, Integer gameGroupId);
+
 }

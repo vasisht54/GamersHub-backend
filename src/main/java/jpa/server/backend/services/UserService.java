@@ -1,5 +1,6 @@
 package jpa.server.backend.services;
 
+import jpa.server.backend.models.Game;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,11 +12,15 @@ import jpa.server.backend.models.GameGroup;
 import jpa.server.backend.models.User;
 import jpa.server.backend.repositories.UserRepository;
 
+
 @Service
 public class UserService implements UserDao {
 
   @Autowired
   private UserRepository userRepository;
+
+  @Autowired
+  private GameGroupServices gameGroupServices;
 
   @Override
   public User createUser(User user) {
@@ -23,8 +28,13 @@ public class UserService implements UserDao {
   }
 
   @Override
-  public List<GameGroup> getUserGroups(Integer userId) {
-    return userRepository.findById(userId).get().getGroupsList();
+  public List<GameGroup> getUserMembershipGroups(Integer userId) {
+    return userRepository.findById(userId).get().getMembershipGroups();
+  }
+
+  @Override
+  public List<GameGroup> getUserAdminGroups(Integer userId) {
+    return userRepository.findById(userId).get().getAdminGroups();
   }
 
   @Override
@@ -53,7 +63,8 @@ public class UserService implements UserDao {
   public User updateUser(User user, Integer userId) {
     User userToUpdate = findUserById(userId);
     userToUpdate.setId(user.getId());
-    userToUpdate.setGroupsList(user.getGroupsList());
+    userToUpdate.setMembershipGroups(user.getMembershipGroups());
+    userToUpdate.setAdminGroups(user.getAdminGroups());
     userToUpdate.setPassword(user.getPassword());
     userToUpdate.setDob(user.getDob());
     userToUpdate.setFirstName(user.getFirstName());
@@ -66,4 +77,14 @@ public class UserService implements UserDao {
   public User findUserByUsername(String username) {
     return userRepository.findUserByUsername(username);
   }
+
+  /*public int addUserToGroup(Integer groupId, Integer userId) {
+    GameGroup gameGroup = gameGroupServices.findGameGroupById(groupId);
+    User user = userRepository.findById(userId).get();
+    List<GameGroup> userMembershipGroups = user.getMembershipGroups();
+    userMembershipGroups.add(gameGroup);
+    user.setMembershipGroups(userMembershipGroups);
+    return 1;
+  }*/
+
 }

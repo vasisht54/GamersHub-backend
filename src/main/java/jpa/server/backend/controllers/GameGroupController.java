@@ -1,5 +1,6 @@
 package jpa.server.backend.controllers;
 
+import jpa.server.backend.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -10,12 +11,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import jpa.server.backend.models.GameGroup;
-import jpa.server.backend.models.GroupAdmin;
-import jpa.server.backend.models.User;
 import jpa.server.backend.services.GameGroupServices;
 
 @RestController
@@ -37,7 +35,7 @@ public class GameGroupController {
 
   @GetMapping("api/gameGroups")
   public List<GameGroup> findAllGameGroups() {
-    return gameGroupServices.findAllGameGroup();
+    return gameGroupServices.findAllGameGroups();
   }
 
   @DeleteMapping("api/gameGroups/{gameGroupId}")
@@ -51,19 +49,28 @@ public class GameGroupController {
     return gameGroupServices.updateGameGroup(gameGroup, gameGroupId);
   }
 
-//  @GetMapping("api/gameGroup/{gameName}")
-//  public List<GameGroup> findGameGroupsByGameName(@PathVariable String gameName) {
-//    return gameGroupServices.findGameGroupByGameName(gameName);
-//  }
+  @GetMapping("api/gameGroups/name/{gameName}")
+  public List<GameGroup> findGameGroupsByGameName(@PathVariable String gameName) {
+    return gameGroupServices.findGameGroupsByGameName(gameName);
+  }
 
-//
-//  @Override
-//  public GroupAdmin getGroupAdmin(GameGroup gameGroup) {
-//    return gameGroup.getGroupAdmin();
-//  }
-//
-//  @Override
-//  public List<User> getUsersInGroup(GameGroup gameGroup) {
-//    return gameGroup.getUsersList();
-//  }
+  @GetMapping("api/gameGroups/{gameGroupId}/groupAdmin")
+  public User getGroupAdmin(@PathVariable("gameGroupId") Integer gameGroupId) {
+    return gameGroupServices.getGroupAdmin(gameGroupId);
+  }
+
+  @GetMapping("api/gameGroups/{gameGroupId}/users")
+  public List<User> findUsersInGroup(@PathVariable("gameGroupId") Integer gameGroupId) {
+    return gameGroupServices.findUsersInGroup(gameGroupId);
+  }
+
+  @PutMapping("api/gameGroups/{gameGroupId}/users/{userId}")
+  public GameGroup addUserToGameGroup(@PathVariable("userId") Integer userId, @PathVariable("gameGroupId") Integer gameGroupId) {
+    return gameGroupServices.addUserToGameGroup(userId, gameGroupId);
+  }
+
+  @DeleteMapping("api/gameGroups/{gameGroupId}/users/{userId}")
+  public int deleteUserFromGameGroup(@PathVariable("gameGroupId") Integer gameGroupId, @PathVariable("userId") Integer userId) {
+    return gameGroupServices.deleteUserFromGroup(userId, gameGroupId);
+  }
 }

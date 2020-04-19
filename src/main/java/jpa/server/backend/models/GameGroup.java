@@ -3,6 +3,7 @@ package jpa.server.backend.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -10,17 +11,46 @@ public class GameGroup {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "group_id")
     private int id;
-    @ManyToMany(mappedBy = "groupsList")
-    private List<User> usersList;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "user_group_mapping",
+            joinColumns = {@JoinColumn(name = "group_id")},
+            inverseJoinColumns = {@JoinColumn(name="id")})
+    @JsonIgnore
+    private List<User> usersList = new ArrayList<>();
+
     @ManyToOne
     @JsonIgnore
-    private GroupAdmin groupAdmin;
+    private User groupAdmin;
+
     @ManyToOne
     @JsonIgnore
     private Game game;
 
+    private String name;
+
+    private String description;
+
+
     public GameGroup() {
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public int getId() {
@@ -39,11 +69,11 @@ public class GameGroup {
         this.usersList = usersList;
     }
 
-    public GroupAdmin getGroupAdmin() {
+    public User getGroupAdmin() {
         return groupAdmin;
     }
 
-    public void setGroupAdmin(GroupAdmin groupAdmin) {
+    public void setGroupAdmin(User groupAdmin) {
         this.groupAdmin = groupAdmin;
     }
 

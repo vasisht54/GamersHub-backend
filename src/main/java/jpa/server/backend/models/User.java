@@ -1,28 +1,44 @@
 package jpa.server.backend.models;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 public class User extends Person {
 
-    @ManyToMany
-    private List<GameGroup> groupsList;
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "usersList")
+    private List<GameGroup> membershipGroups = new ArrayList<>();
+
+    @OneToMany(mappedBy = "groupAdmin")
+    private List<GameGroup> adminGroups;
 
     public User() {
     }
 
-    public User(String username, String password, String firstName, String lastName, Date dob) {
-        super(username, password, firstName, lastName, dob);
+    public List<GameGroup> getMembershipGroups() {
+        return membershipGroups;
     }
 
-    public List<GameGroup> getGroupsList() {
-        return groupsList;
+    public void setMembershipGroups(List<GameGroup> membershipGroups) {
+        this.membershipGroups = membershipGroups;
     }
 
-    public void setGroupsList(List<GameGroup> groupsList) {
-        this.groupsList = groupsList;
+    public List<GameGroup> getAdminGroups() {
+        return adminGroups;
+    }
+
+    public void setAdminGroups(List<GameGroup> adminGroups) {
+        this.adminGroups = adminGroups;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "membershipGroups=" + membershipGroups +
+                ", adminGroups=" + adminGroups +
+                "} " + super.toString();
     }
 }

@@ -47,7 +47,6 @@ public class GameController {
     return gameService.updateGame(game, gameId);
   }
 
-
   @GetMapping("/api/games/{name}")
   public Game findGameByName(@PathVariable String name) {return gameService.findGameByName(name); }
 }
