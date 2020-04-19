@@ -1,20 +1,19 @@
 package jpa.server.backend.models;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 public class User extends Person {
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    private List<GameGroup> membershipGroups;
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "usersList")
+    private List<GameGroup> membershipGroups = new ArrayList<>();
 
     @OneToMany(mappedBy = "groupAdmin")
     private List<GameGroup> adminGroups;
-
 
     public User() {
     }

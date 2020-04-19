@@ -35,7 +35,7 @@ public class GameGroupController {
 
   @GetMapping("api/gameGroups")
   public List<GameGroup> findAllGameGroups() {
-    return gameGroupServices.findAllGameGroup();
+    return gameGroupServices.findAllGameGroups();
   }
 
   @DeleteMapping("api/gameGroups/{gameGroupId}")
@@ -64,15 +64,13 @@ public class GameGroupController {
     return gameGroupServices.findUsersInGroup(gameGroupId);
   }
 
-  /*@PutMapping("api/gameGroups/{gameGroupId}/users/{userId}")
+  @PutMapping("api/gameGroups/{gameGroupId}/users/{userId}")
   public GameGroup addUserToGameGroup(@PathVariable("userId") Integer userId, @PathVariable("gameGroupId") Integer gameGroupId) {
     return gameGroupServices.addUserToGameGroup(userId, gameGroupId);
-  }*/
+  }
 
   @DeleteMapping("api/gameGroups/{gameGroupId}/users/{userId}")
   public int deleteUserFromGameGroup(@PathVariable("gameGroupId") Integer gameGroupId, @PathVariable("userId") Integer userId) {
     return gameGroupServices.deleteUserFromGroup(userId, gameGroupId);
   }
-
-
 }

@@ -10,7 +10,7 @@ public interface GameGroupDao {
 
   GameGroup findGameGroupById(Integer gameGroupId);
 
-  List<GameGroup> findAllGameGroup();
+  List<GameGroup> findAllGameGroups();
 
   void deleteGameGroup(Integer gameGroupId);
 
@@ -22,7 +22,7 @@ public interface GameGroupDao {
 
   List<User> findUsersInGroup(Integer gameGroupId);
 
-  /*GameGroup addUserToGameGroup(Integer userId, Integer gameGroupId);*/
+  GameGroup addUserToGameGroup(Integer userId, Integer gameGroupId);
 
   int deleteUserFromGroup(Integer userId, Integer gameGroupId);
 
