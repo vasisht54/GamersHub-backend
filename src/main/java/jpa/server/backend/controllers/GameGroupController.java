@@ -23,9 +23,10 @@ public class GameGroupController {
   @Autowired
   private GameGroupServices gameGroupServices;
 
-  @PostMapping("/api/gameGroups")
-  public GameGroup createGameGroup(@RequestBody GameGroup gameGroup) {
-    return gameGroupServices.createGameGroup(gameGroup);
+  @PostMapping("/api/users/{userId}/games/{gameId}/gameGroups")
+  public GameGroup createGameGroup(@RequestBody GameGroup gameGroup, @PathVariable int userId, @PathVariable int gameId) {
+
+    return gameGroupServices.createGameGroup(gameGroup, userId, gameId);
   }
 
   @GetMapping("api/gameGroups/{gameGroupId:[0-9]+}")

@@ -27,7 +27,19 @@ public class GameGroupServices implements GameGroupDao {
   UserService userService;
 
   @Override
-  public GameGroup createGameGroup(GameGroup gameGroup) {
+  public GameGroup createGameGroup(GameGroup gameGroup, int userId, int gameId) {
+    User groupAdmin = userService.findUserById(userId);
+    List<GameGroup> groupAdminsGroups = groupAdmin.getAdminGroups();
+
+    Game gameForGroup = gameService.findGameById(gameId);
+    List<GameGroup> groupsForGame = gameForGroup.getGroupsList();
+
+    gameGroup.setGroupAdmin(groupAdmin);
+    gameGroup.setGame(gameForGroup);
+
+
+    groupAdminsGroups.add(gameGroup);
+    groupsForGame.add(gameGroup);
     return gameGroupRepository.save(gameGroup);
   }
 

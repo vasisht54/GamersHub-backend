@@ -8,7 +8,7 @@ import jpa.server.backend.models.GameGroup;
 import jpa.server.backend.models.User;
 
 public interface GameGroupDao {
-  GameGroup createGameGroup(GameGroup gameGroup);
+  GameGroup createGameGroup(GameGroup gameGroup, int userId, int gameId);
 
   GameGroup findGameGroupById(Integer gameGroupId);
 
