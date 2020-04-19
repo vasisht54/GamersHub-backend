@@ -75,5 +75,5 @@ public class GameGroupController {
   }
 
   @GetMapping("/api/gameGroups/{gameGroupName:[a-zA-z]+}")
-  public GameGroup findGameByName(@PathVariable String gameGroupName) {return gameGroupServices.findGameGroupByName(gameGroupName); }
+  public GameGroup findGameGroupByName(@PathVariable String gameGroupName) {return gameGroupServices.findGameGroupByName(gameGroupName); }
 }
