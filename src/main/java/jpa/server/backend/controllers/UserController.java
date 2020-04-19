@@ -33,7 +33,7 @@ public class UserController {
     return userService.findAllUsers();
   }
 
-  @GetMapping("/api/users/{userId}")
+  @GetMapping("/api/users/{userId:[0-9]+}")
   public User findUserById(@PathVariable int userId) {
     return userService.findUserById(userId);
   }
@@ -58,6 +58,6 @@ public class UserController {
     return userService.getUserAdminGroups(userId);
   }
 
-  @GetMapping("/api/users/{username}")
+  @GetMapping("/api/users/{username:[a-zA-z]+}")
   public User findUserByUsername(@PathVariable String username) {return userService.findUserByUsername(username); }
 }

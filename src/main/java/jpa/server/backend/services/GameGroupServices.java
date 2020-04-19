@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import jpa.server.backend.daos.GameGroupDao;
 import jpa.server.backend.models.GameGroup;
@@ -32,7 +33,12 @@ public class GameGroupServices implements GameGroupDao {
 
   @Override
   public GameGroup findGameGroupById(Integer gameGroupId) {
-    return gameGroupRepository.findById(gameGroupId).get();
+    try {
+      GameGroup gameGroupToReturn = this.gameGroupRepository.findById(gameGroupId).get();
+      return gameGroupToReturn;
+    }catch (NoSuchElementException e) {
+      return new GameGroup();
+    }
   }
 
   @Override
@@ -99,4 +105,8 @@ public class GameGroupServices implements GameGroupDao {
     return 1;
   }
 
+  @Override
+  public GameGroup findGameGroupByName(String name) {
+    return gameGroupRepository.findGameGroupByName(name);
+  }
 }
