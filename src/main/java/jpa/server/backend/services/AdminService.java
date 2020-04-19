@@ -57,7 +57,6 @@ public class AdminService implements AdminDao {
     adminToUpdate.setFirstName(admin.getFirstName());
     adminToUpdate.setLastName(admin.getLastName());
     adminToUpdate.setUsername(admin.getUsername());
-    adminToUpdate.setId(admin.getId());
     return adminRepository.save(admin);
   }
 

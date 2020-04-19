@@ -56,7 +56,6 @@ public class GameService implements GameDao {
     gameToUpdate.setCreator(game.getCreator());
     gameToUpdate.setDescription(game.getDescription());
     gameToUpdate.setGroupsList(game.getGroupsList());
-    gameToUpdate.setId(game.getId());
     gameToUpdate.setImageUrl(game.getImageUrl());
     gameToUpdate.setName(game.getName());
     gameToUpdate.setPublishedDate(game.getPublishedDate());

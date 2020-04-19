@@ -63,7 +63,8 @@ public class GameGroupServices implements GameGroupDao {
     GameGroup gameGroupToUpdate = findGameGroupById(gameId);
     gameGroupToUpdate.setGame(gameGroup.getGame());
     gameGroupToUpdate.setGroupAdmin(gameGroup.getGroupAdmin());
-    gameGroupToUpdate.setId(gameGroup.getId());
+    gameGroupToUpdate.setDescription(gameGroup.getDescription());
+    gameGroupToUpdate.setName(gameGroup.getName());
     gameGroupToUpdate.setUsersList(gameGroup.getUsersList());
     return gameGroupRepository.save(gameGroupToUpdate);
   }
