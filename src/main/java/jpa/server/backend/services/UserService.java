@@ -81,7 +81,6 @@ public class UserService implements UserDao {
   @Override
   public User updateUser(User user, Integer userId) {
     User userToUpdate = findUserById(userId);
-    userToUpdate.setId(user.getId());
     userToUpdate.setMembershipGroups(user.getMembershipGroups());
     userToUpdate.setAdminGroups(user.getAdminGroups());
     userToUpdate.setPassword(user.getPassword());
@@ -96,14 +95,5 @@ public class UserService implements UserDao {
   public User findUserByUsername(String username) {
     return userRepository.findUserByUsername(username);
   }
-
-  /*public int addUserToGroup(Integer groupId, Integer userId) {
-    GameGroup gameGroup = gameGroupServices.findGameGroupById(groupId);
-    User user = userRepository.findById(userId).get();
-    List<GameGroup> userMembershipGroups = user.getMembershipGroups();
-    userMembershipGroups.add(gameGroup);
-    user.setMembershipGroups(userMembershipGroups);
-    return 1;
-  }*/
 
 }
