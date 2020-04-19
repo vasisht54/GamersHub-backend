@@ -1,5 +1,7 @@
 package jpa.server.backend.daos;
 
+import org.springframework.data.repository.query.Param;
+
 import java.util.List;
 
 import jpa.server.backend.models.GameGroup;
@@ -25,5 +27,8 @@ public interface GameGroupDao {
   GameGroup addUserToGameGroup(Integer userId, Integer gameGroupId);
 
   int deleteUserFromGroup(Integer userId, Integer gameGroupId);
+
+  GameGroup findGameGroupByName(String name);
+
 
 }

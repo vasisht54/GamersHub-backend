@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import jpa.server.backend.daos.AdminDao;
 import jpa.server.backend.models.Admin;
@@ -22,7 +23,12 @@ public class AdminService implements AdminDao {
 
   @Override
   public Admin findAdminById(Integer adminId) {
-    return adminRepository.findById(adminId).get();
+    try {
+      Admin adminToReturn = this.adminRepository.findById(adminId).get();
+      return adminToReturn;
+    }catch (NoSuchElementException e) {
+      return new Admin();
+    }
   }
 
   @Override

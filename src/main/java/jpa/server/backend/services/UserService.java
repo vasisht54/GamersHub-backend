@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 import jpa.server.backend.daos.UserDao;
 import jpa.server.backend.models.GameGroup;
@@ -29,17 +31,34 @@ public class UserService implements UserDao {
 
   @Override
   public List<GameGroup> getUserMembershipGroups(Integer userId) {
-    return userRepository.findById(userId).get().getMembershipGroups();
+    List<GameGroup> listToReturn = userRepository.findById(userId).get().getMembershipGroups();
+    if (listToReturn == null) {
+      return new ArrayList<GameGroup>();
+    } else {
+      return listToReturn;
+    }
+
   }
 
   @Override
   public List<GameGroup> getUserAdminGroups(Integer userId) {
-    return userRepository.findById(userId).get().getAdminGroups();
+    List<GameGroup> listToReturn = userRepository.findById(userId).get().getAdminGroups();
+    if (listToReturn == null) {
+      return new ArrayList<GameGroup>();
+    } else {
+      return listToReturn;
+    }
   }
 
   @Override
   public User findUserById(Integer userId) {
-    return this.userRepository.findById(userId).get();
+    try {
+      User userToReturn = this.userRepository.findById(userId).get();
+      return userToReturn;
+    }catch (NoSuchElementException e) {
+      return new User();
+    }
+
   }
 
   @Override

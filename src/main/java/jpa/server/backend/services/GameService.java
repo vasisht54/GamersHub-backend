@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import jpa.server.backend.daos.GameDao;
 import jpa.server.backend.models.Game;
@@ -24,7 +25,12 @@ public class GameService implements GameDao {
 
   @Override
   public Game findGameById(Integer gameId) {
-    return gameRepository.findById(gameId).get();
+    try {
+      Game gameToReturn = this.gameRepository.findById(gameId).get();
+      return gameToReturn;
+    }catch (NoSuchElementException e) {
+      return new Game();
+    }
   }
 
   @Override

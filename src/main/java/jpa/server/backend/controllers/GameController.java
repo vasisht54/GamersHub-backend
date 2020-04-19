@@ -32,7 +32,7 @@ public class GameController {
     return gameService.findAllGames();
   }
 
-  @GetMapping("/api/games/{gameId}")
+  @GetMapping("/api/games/{gameId:[0-9]+}")
   public Game findGameById(@PathVariable int gameId) {
     return gameService.findGameById(gameId);
   }
@@ -47,6 +47,6 @@ public class GameController {
     return gameService.updateGame(game, gameId);
   }
 
-  @GetMapping("/api/games/{name}")
+  @GetMapping("/api/games/{name:[a-zA-z]+}")
   public Game findGameByName(@PathVariable String name) {return gameService.findGameByName(name); }
 }

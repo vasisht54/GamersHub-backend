@@ -33,7 +33,7 @@ public class AdminController {
     return adminService.findAllAdmins();
   }
 
-  @GetMapping("/api/admins/{adminId}")
+  @GetMapping("/api/admins/{adminId:[0-9]+}")
   public Admin findAdminById(@PathVariable int adminId) {
     return adminService.findAdminById(adminId);
   }
@@ -49,6 +49,6 @@ public class AdminController {
   }
 
 
-  @GetMapping("/api/admins/{username}")
+  @GetMapping("/api/admins/{username:[a-zA-z]+}")
   public Admin findAdminByUsername(@PathVariable String username) {return adminService.findAdminByUsername(username); }
 }
