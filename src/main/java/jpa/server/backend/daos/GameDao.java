@@ -13,7 +13,7 @@ public interface GameDao {
 
   List<Game> findAllGames();
 
-  void deleteGame(Integer gameId);
+  int deleteGame(Integer gameId);
 
   Game updateGame(Game game, Integer gameId);
 

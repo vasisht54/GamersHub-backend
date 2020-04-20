@@ -18,7 +18,7 @@ public interface AdminDao {
   //find all users
   List<Admin> findAllAdmins();
 
-  void deleteAdmin(Integer adminId);
+  int deleteAdmin(Integer adminId);
 //  void deleteUser(Integer userId);
 //  void deleteGroupAdmin(Integer groupAdminId);
 

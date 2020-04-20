@@ -66,8 +66,9 @@ public class GameGroupServices implements GameGroupDao {
   }
 
   @Override
-  public void deleteGameGroup(Integer gameGroupId) {
+  public int deleteGameGroup(Integer gameGroupId) {
     gameGroupRepository.deleteById(gameGroupId);
+    return 1;
   }
 
   @Override

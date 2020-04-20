@@ -25,7 +25,7 @@ public interface UserDao {
   //find all users
   List<User> findAllUsers();
 
-  void deleteUser(Integer userId);
+  int deleteUser(Integer userId);
 
   User updateUser(User user, Integer userId);
 

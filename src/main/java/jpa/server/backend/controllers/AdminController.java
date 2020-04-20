@@ -24,7 +24,7 @@ public class AdminController {
   private AdminService adminService;
 
   @DeleteMapping("/api/admins/{adminId}")
-  public void deleteAdmin(@PathVariable int adminId) {
+  public int deleteAdmin(@PathVariable int adminId) {
     this.adminService.deleteAdmin(adminId);
   }
 

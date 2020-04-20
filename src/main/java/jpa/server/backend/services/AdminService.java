@@ -44,8 +44,9 @@ public class AdminService implements AdminDao {
   }
 
   @Override
-  public void deleteAdmin(Integer adminId) {
+  public int deleteAdmin(Integer adminId) {
     adminRepository.deleteById(adminId);
+    return 1;
   }
 
   @Override

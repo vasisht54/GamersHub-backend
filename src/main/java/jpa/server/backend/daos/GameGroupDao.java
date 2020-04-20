@@ -14,7 +14,7 @@ public interface GameGroupDao {
 
   List<GameGroup> findAllGameGroups();
 
-  void deleteGameGroup(Integer gameGroupId);
+  int deleteGameGroup(Integer gameGroupId);
 
   GameGroup updateGameGroup(GameGroup gameGroup, Integer gameId);
 

@@ -23,7 +23,7 @@ public class GameController {
   private GameService gameService;
 
   @DeleteMapping("/api/games/{gameId}")
-  public void deleteGame(@PathVariable int gameId) {
+  public int deleteGame(@PathVariable int gameId) {
     this.gameService.deleteGame(gameId);
   }
 

@@ -74,8 +74,9 @@ public class UserService implements UserDao {
   }
 
   @Override
-  public void deleteUser(Integer userId) {
+  public int deleteUser(Integer userId) {
     this.userRepository.deleteById(userId);
+    return 1;
   }
 
   @Override

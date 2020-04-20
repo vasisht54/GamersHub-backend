@@ -46,8 +46,9 @@ public class GameService implements GameDao {
   }
 
   @Override
-  public void deleteGame(Integer gameId) {
+  public int deleteGame(Integer gameId) {
     gameRepository.deleteById(gameId);
+    return 1;
   }
 
   @Override
