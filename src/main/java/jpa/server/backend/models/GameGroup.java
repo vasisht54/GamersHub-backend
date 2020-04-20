@@ -18,7 +18,6 @@ public class GameGroup {
     @JoinTable(name = "user_group_mapping",
             joinColumns = {@JoinColumn(name = "group_id")},
             inverseJoinColumns = {@JoinColumn(name="id")})
-    @JsonIgnore
     private List<User> usersList = new ArrayList<>();
 
     @ManyToOne

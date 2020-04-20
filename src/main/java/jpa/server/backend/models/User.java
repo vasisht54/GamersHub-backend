@@ -10,6 +10,7 @@ import java.util.List;
 public class User extends Person {
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "usersList")
+    @JsonIgnore
     private List<GameGroup> membershipGroups = new ArrayList<>();
 
     @OneToMany(mappedBy = "groupAdmin")
