@@ -48,5 +48,8 @@ public class GameController {
   }
 
   @GetMapping("/api/games/{name:[a-zA-z]+}")
-  public Game findGameByName(@PathVariable String name) {return gameService.findGameByName(name); }
+  public Game findGameByName(@PathVariable String name) {
+    String actualGameName = name.replaceAll("%20", " ");
+    return gameService.findGameByName(actualGameName);
+  }
 }
