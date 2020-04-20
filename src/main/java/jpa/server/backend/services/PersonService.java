@@ -22,6 +22,7 @@ public class PersonService implements PersonDao {
   @Override
   public Person login(HttpSession session, Person person) {
     Person profile = personRepository.findPersonByCredentials(person.getUsername(), person.getPassword());
+    person.setPassword("");
     session.setAttribute("profile", profile);
     return profile;
   }
@@ -29,9 +30,13 @@ public class PersonService implements PersonDao {
   @Override
   public Person register(HttpSession session, Person person) {
     Person newPerson = personRepository.save(person);
-    newPerson.setPassword("***");
+    newPerson.setPassword("");
     session.setAttribute("profile", newPerson);
     return newPerson;
+  }
+
+  public Person update(Person person){
+    return personRepository.save(person);
   }
 
   @Override

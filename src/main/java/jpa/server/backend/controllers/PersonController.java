@@ -3,6 +3,7 @@ package jpa.server.backend.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,7 +14,7 @@ import jpa.server.backend.repositories.PersonRepository;
 import jpa.server.backend.services.PersonService;
 
 @RestController
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
 public class PersonController {
 
   @Autowired
@@ -21,6 +22,7 @@ public class PersonController {
 
   @PostMapping("api/register")
   public Person register(HttpSession session, @RequestBody Person person) {
+    System.out.println("Register Reached");
     return personService.register(session, person);
   }
 
@@ -33,6 +35,14 @@ public class PersonController {
   public Person login(HttpSession session, @RequestBody Person person) {
     return personService.login(session, person);
   }
+
+  @PutMapping("api/update")
+  public Person updateUser(HttpSession session,
+                         @RequestBody Person updateUser){
+    System.out.println("Update Reached");
+    return personService.update(updateUser);
+  }
+
 
   @PostMapping("api/profile")
   public Person profile(HttpSession session) {
