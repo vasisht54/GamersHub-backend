@@ -24,7 +24,7 @@ public class GameController {
 
   @DeleteMapping("/api/games/{gameId}")
   public int deleteGame(@PathVariable int gameId) {
-    this.gameService.deleteGame(gameId);
+    return this.gameService.deleteGame(gameId);
   }
 
   @GetMapping("/api/games")

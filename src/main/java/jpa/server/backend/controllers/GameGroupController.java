@@ -41,7 +41,7 @@ public class GameGroupController {
 
   @DeleteMapping("api/gameGroups/{gameGroupId}")
   public int deleteGameGroup(@PathVariable int gameGroupId) {
-    this.gameGroupServices.deleteGameGroup(gameGroupId);
+    return this.gameGroupServices.deleteGameGroup(gameGroupId);
   }
 
 

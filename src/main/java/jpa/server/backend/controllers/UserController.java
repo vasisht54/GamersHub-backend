@@ -25,7 +25,7 @@ public class UserController {
 
   @DeleteMapping("/api/users/{userId}")
   public int deleteUser(@PathVariable int userId) {
-    this.userService.deleteUser(userId);
+    return this.userService.deleteUser(userId);
   }
 
   @GetMapping("/api/users")
