@@ -42,8 +42,7 @@ public class PersonController {
     System.out.println("Update Reached");
     return personService.update(updateUser);
   }
-
-
+  
   @PostMapping("api/profile")
   public Person profile(HttpSession session) {
     Person profile = (Person)session.getAttribute("profile");

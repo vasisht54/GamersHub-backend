@@ -52,7 +52,9 @@ public class GameGroupController {
 
   @GetMapping("api/gameGroups/name/{gameName}")
   public List<GameGroup> findGameGroupsByGameName(@PathVariable String gameName) {
-    return gameGroupServices.findGameGroupsByGameName(gameName);
+    String actualGameName = gameName.replaceAll("%20", " ");
+    System.out.println(actualGameName);
+    return gameGroupServices.findGameGroupsByGameName(actualGameName);
   }
 
   @GetMapping("api/gameGroups/{gameGroupId}/groupAdmin")
@@ -76,5 +78,8 @@ public class GameGroupController {
   }
 
   @GetMapping("/api/gameGroups/{gameGroupName:[a-zA-z]+}")
-  public GameGroup findGameGroupByName(@PathVariable String gameGroupName) {return gameGroupServices.findGameGroupByName(gameGroupName); }
+  public GameGroup findGameGroupByName(@PathVariable String gameGroupName) {
+    String actualGroupName = gameGroupName.replaceAll("%20", " ");
+    return gameGroupServices.findGameGroupByName(actualGroupName);
+  }
 }
