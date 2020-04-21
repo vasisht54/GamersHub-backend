@@ -9,11 +9,15 @@ import java.util.List;
 @Entity
 public class User extends Person {
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "usersList")
+    @ManyToMany(fetch = FetchType.LAZY/*, mappedBy = "usersList"*/)
     @JsonIgnore
+    @JoinTable(name = "user_group_mapping",
+            joinColumns = {@JoinColumn(name = "id")},
+            inverseJoinColumns = {@JoinColumn(name="group_id")})
     private List<GameGroup> membershipGroups = new ArrayList<>();
 
     @OneToMany(mappedBy = "groupAdmin")
+    @JsonIgnore
     private List<GameGroup> adminGroups;
 
     public User() {

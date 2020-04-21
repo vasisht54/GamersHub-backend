@@ -14,14 +14,13 @@ public class GameGroup {
     @Column(name = "group_id")
     private int id;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "user_group_mapping",
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "membershipGroups")
+    /*@JoinTable(name = "user_group_mapping",
             joinColumns = {@JoinColumn(name = "group_id")},
-            inverseJoinColumns = {@JoinColumn(name="id")})
+            inverseJoinColumns = {@JoinColumn(name="id")})*/
     private List<User> usersList = new ArrayList<>();
 
     @ManyToOne
-    @JsonIgnore
     private User groupAdmin;
 
     @ManyToOne

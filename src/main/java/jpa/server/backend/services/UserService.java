@@ -1,13 +1,11 @@
 package jpa.server.backend.services;
 
-import jpa.server.backend.models.Game;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Optional;
 
 import jpa.server.backend.daos.UserDao;
 import jpa.server.backend.models.GameGroup;
@@ -75,6 +73,12 @@ public class UserService implements UserDao {
 
   @Override
   public int deleteUser(Integer userId) {
+
+    List<GameGroup> adminGroups = getUserAdminGroups(userId);
+
+    for (GameGroup adminGroup : adminGroups) {
+      gameGroupServices.deleteGameGroup(adminGroup.getId());
+    }
     this.userRepository.deleteById(userId);
     return 1;
   }

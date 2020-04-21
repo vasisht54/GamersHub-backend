@@ -67,6 +67,14 @@ public class GameGroupServices implements GameGroupDao {
 
   @Override
   public int deleteGameGroup(Integer gameGroupId) {
+
+    GameGroup gameGroup = findGameGroupById(gameGroupId);
+    List<User> users = findUsersInGroup(gameGroupId);
+
+    for(User u: users) {
+      userService.getUserMembershipGroups(u.getId()).remove(gameGroup);
+    }
+
     gameGroupRepository.deleteById(gameGroupId);
     return 1;
   }
@@ -103,8 +111,8 @@ public class GameGroupServices implements GameGroupDao {
   public GameGroup addUserToGameGroup(Integer userId, Integer gameGroupId) {
     GameGroup group = findGameGroupById(gameGroupId);
     User user = userService.findUserById(userId);
-    group.getUsersList().add(user);
     user.getMembershipGroups().add(group);
+    group.getUsersList().add(user);
     gameGroupRepository.save(group);
     return group;
   }
@@ -113,8 +121,8 @@ public class GameGroupServices implements GameGroupDao {
   public int deleteUserFromGroup(Integer userId, Integer gameGroupId) {
     GameGroup group = findGameGroupById(gameGroupId);
     User user = userService.findUserById(userId);
-    group.getUsersList().remove(user);
     user.getMembershipGroups().remove(group);
+    group.getUsersList().remove(user);
     gameGroupRepository.save(group);
     return 1;
   }
