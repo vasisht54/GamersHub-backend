@@ -77,4 +77,17 @@ public class Game {
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
+
+    @Override
+    public String toString() {
+        return "Game{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", groupsList=" + groupsList +
+                ", description='" + description + '\'' +
+                ", publishedDate=" + publishedDate +
+                ", creator='" + creator + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
+                '}';
+    }
 }

@@ -2,6 +2,7 @@ package jpa.server.backend.services;
 
 import jpa.server.backend.models.Game;
 import jpa.server.backend.repositories.GameRepository;
+import org.hibernate.tool.schema.internal.exec.ScriptTargetOutputToFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -81,9 +82,12 @@ public class GameGroupServices implements GameGroupDao {
 
   @Override
   public GameGroup updateGameGroup(GameGroup gameGroup, Integer gameId) {
+    User groupAdmin = findGameGroupById(gameGroup.getId()).getGroupAdmin();
+    Game game = findGameGroupById(gameGroup.getId()).getGame();
+
     GameGroup gameGroupToUpdate = findGameGroupById(gameId);
-    gameGroupToUpdate.setGame(gameGroup.getGame());
-    gameGroupToUpdate.setGroupAdmin(gameGroup.getGroupAdmin());
+    gameGroupToUpdate.setGame(game);
+    gameGroupToUpdate.setGroupAdmin(groupAdmin);
     gameGroupToUpdate.setDescription(gameGroup.getDescription());
     gameGroupToUpdate.setName(gameGroup.getName());
     gameGroupToUpdate.setUsersList(gameGroup.getUsersList());
