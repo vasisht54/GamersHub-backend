@@ -14,7 +14,7 @@ import jpa.server.backend.repositories.PersonRepository;
 import jpa.server.backend.services.PersonService;
 
 @RestController
-@CrossOrigin("*")
+@CrossOrigin(origins = "*")
 public class PersonController {
 
   @Autowired

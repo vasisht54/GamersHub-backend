@@ -17,7 +17,7 @@ import jpa.server.backend.models.GameGroup;
 import jpa.server.backend.services.GameGroupServices;
 
 @RestController
-@CrossOrigin("*")
+@CrossOrigin(origins = "*")
 public class GameGroupController {
 
   @Autowired
