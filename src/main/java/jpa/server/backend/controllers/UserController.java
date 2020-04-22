@@ -17,7 +17,7 @@ import jpa.server.backend.models.User;
 import jpa.server.backend.services.UserService;
 
 @RestController
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "*", allowCredentials = "true")
 public class UserController {
 
   @Autowired

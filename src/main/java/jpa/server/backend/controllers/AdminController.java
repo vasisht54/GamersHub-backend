@@ -17,7 +17,7 @@ import jpa.server.backend.models.Admin;
 import jpa.server.backend.services.AdminService;
 
 @RestController
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "*", allowCredentials = "true")
 public class AdminController {
 
   @Autowired
