@@ -11,4 +11,7 @@ public interface GameGroupRepository extends CrudRepository<GameGroup, Integer> 
   @Query("SELECT gameGroup FROM GameGroup gameGroup where gameGroup.name=:name")
   GameGroup findGameGroupByName(@Param("name") String name);
 
+  @Query(value = "SELECT game_id FROM game_group where group_id=:groupId", nativeQuery = true)
+  int findGameIdForGameGroup(@Param("groupId") int id);
+
 }

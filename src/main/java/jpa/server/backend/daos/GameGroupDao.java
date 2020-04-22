@@ -30,5 +30,5 @@ public interface GameGroupDao {
 
   GameGroup findGameGroupByName(String name);
 
-
+  int findGameIdForGameGroup(int gameGroupId);
 }

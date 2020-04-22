@@ -29,6 +29,12 @@ public class GameGroupController {
     return gameGroupServices.createGameGroup(gameGroup, userId, gameId);
   }
 
+  @GetMapping("api/gameGroups/{gameGroupId}/gameId")
+  public int findGameIdByGroupId(@PathVariable("gameGroupId") int gameGroupId) {
+    System.out.println("here");
+    return gameGroupServices.findGameIdForGameGroup(gameGroupId);
+  }
+
   @GetMapping("api/gameGroups/{gameGroupId:[0-9]+}")
   public GameGroup findGameGroupById(@PathVariable int gameGroupId) {
     return gameGroupServices.findGameGroupById(gameGroupId);

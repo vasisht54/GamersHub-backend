@@ -132,6 +132,11 @@ public class GameGroupServices implements GameGroupDao {
   }
 
   @Override
+  public int findGameIdForGameGroup(int gameGroupId) {
+    return gameGroupRepository.findGameIdForGameGroup(gameGroupId);
+  }
+
+  @Override
   public GameGroup findGameGroupByName(String name) {
     return gameGroupRepository.findGameGroupByName(name);
   }
