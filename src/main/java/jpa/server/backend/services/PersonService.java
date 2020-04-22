@@ -22,9 +22,14 @@ public class PersonService implements PersonDao {
   @Override
   public User login(HttpSession session, User user) {
     User profile = personRepository.findPersonByCredentials(user.getUsername(), user.getPassword());
-    user.setPassword("");
-    session.setAttribute("profile", profile);
-    return profile;
+    if (profile == null) {
+      return new User();
+    } else {
+      user.setPassword("");
+      session.setAttribute("profile", profile);
+      return profile;
+    }
+
   }
 
   @Override
