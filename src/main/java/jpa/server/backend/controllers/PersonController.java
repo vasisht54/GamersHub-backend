@@ -1,5 +1,6 @@
 package jpa.server.backend.controllers;
 
+import jpa.server.backend.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,7 +22,7 @@ public class PersonController {
   private PersonService personService;
 
   @PostMapping("api/register")
-  public Person register(HttpSession session, @RequestBody Person person) {
+  public User register(HttpSession session, @RequestBody User person) {
     System.out.println("Register Reached");
     return personService.register(session, person);
   }
@@ -32,20 +33,20 @@ public class PersonController {
   }
 
   @PostMapping("api/login")
-  public Person login(HttpSession session, @RequestBody Person person) {
+  public User login(HttpSession session, @RequestBody User person) {
     return personService.login(session, person);
   }
 
   @PutMapping("api/update")
-  public Person updateUser(HttpSession session,
-                         @RequestBody Person updateUser){
+  public User updateUser(HttpSession session,
+                         @RequestBody User updateUser){
     System.out.println("Update Reached");
     return personService.update(updateUser);
   }
   
   @PostMapping("api/profile")
-  public Person profile(HttpSession session) {
-    Person profile = (Person)session.getAttribute("profile");
+  public User profile(HttpSession session) {
+    User profile = (User)session.getAttribute("profile");
     return profile;
   }
 }

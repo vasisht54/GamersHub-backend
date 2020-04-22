@@ -1,12 +1,12 @@
 package jpa.server.backend.services;
 
+import jpa.server.backend.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
 
 import jpa.server.backend.daos.PersonDao;
-import jpa.server.backend.models.Person;
 import jpa.server.backend.repositories.PersonRepository;
 
 @Service
@@ -20,28 +20,28 @@ public class PersonService implements PersonDao {
   }
 
   @Override
-  public Person login(HttpSession session, Person person) {
-    Person profile = personRepository.findPersonByCredentials(person.getUsername(), person.getPassword());
-    person.setPassword("");
+  public User login(HttpSession session, User user) {
+    User profile = personRepository.findPersonByCredentials(user.getUsername(), user.getPassword());
+    user.setPassword("");
     session.setAttribute("profile", profile);
     return profile;
   }
 
   @Override
-  public Person register(HttpSession session, Person person) {
-    Person newPerson = personRepository.save(person);
+  public User register(HttpSession session, User user) {
+    User newPerson = personRepository.save(user);
     newPerson.setPassword("");
     session.setAttribute("profile", newPerson);
     return newPerson;
   }
 
-  public Person update(Person person){
-    return personRepository.save(person);
+  public User update(User user){
+    return personRepository.save(user);
   }
 
   @Override
-  public Person profile(HttpSession session) {
-    Person profile = (Person)session.getAttribute("profile");
+  public User profile(HttpSession session) {
+    User profile = (User)session.getAttribute("profile");
     return profile;
   }
 }
